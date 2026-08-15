@@ -256,9 +256,8 @@ const App: React.FC = () => {
             )}
 
             {/* Cloud Status */}
-            <div className={`hidden sm:flex items-center gap-1 text-xs px-2 py-1 rounded-full ${supabaseReady ? 'bg-green-500/10 text-green-400' : 'bg-amber-500/10 text-amber-400'}`}>
+            <div className={`hidden sm:flex items-center gap-1 text-xs px-2 py-1 rounded-full ${supabaseReady ? 'bg-green-500/10 text-green-400' : 'bg-amber-500/10 text-amber-400'}`} title={supabaseReady ? 'Connected' : 'Local only'}>
               <Database className="w-3 h-3" />
-              {supabaseReady ? 'Cloud' : 'Local'}
             </div>
 
             {/* New Game */}
@@ -295,13 +294,7 @@ const App: React.FC = () => {
               <HelpCircle className="w-4 h-4" />
             </button>
 
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className={`p-1.5 rounded-lg ${theme === 'dark' ? 'bg-slate-800 text-amber-400' : 'bg-slate-200 text-slate-800'}`}
-            >
-              {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Sun className="w-4 h-4" />}
-            </button>
+            {/* Theme toggle removed per request */}
 
             {/* Profile */}
             <button
@@ -399,12 +392,8 @@ const App: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-lg p-4`}>
-                    <p className="text-xs text-slate-400 mb-1">User ID</p>
-                    <p className="text-sm font-mono truncate">{user.id}</p>
-                  </div>
-                  <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-lg p-4`}>
-                    <p className="text-xs text-slate-400 mb-1">Storage Mode</p>
-                    <p className="text-sm font-bold">{supabaseReady ? '☁️ Cloud Connected' : '💾 Local Only'}</p>
+                    <p className="text-xs text-slate-400 mb-1">Email</p>
+                    <p className="text-sm font-mono truncate">{user.email}</p>
                   </div>
                   <div className={`${theme === 'dark' ? 'bg-slate-800' : 'bg-white'} rounded-lg p-4`}>
                     <p className="text-xs text-slate-400 mb-1">Total Games</p>

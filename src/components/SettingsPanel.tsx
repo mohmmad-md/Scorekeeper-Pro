@@ -22,7 +22,7 @@ interface SettingsPanelProps {
 type SettingsTab = 'supabase' | 'about' | 'sponsor' | 'howtouse';
 
 export const SettingsPanel: React.FC<SettingsPanelProps> = ({ onBack, onConnectionChange }) => {
-  const [activeTab, setActiveTab] = useState<SettingsTab>('supabase');
+  const [activeTab, setActiveTab] = useState<SettingsTab>('about');
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white">
@@ -41,7 +41,6 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({ onBack, onConnecti
         <div className="max-w-4xl mx-auto px-4">
           <div className="flex gap-1 overflow-x-auto py-2">
             {[
-              { id: 'supabase' as const, icon: Database, label: 'Database' },
               { id: 'about' as const, icon: Info, label: 'About Us' },
               { id: 'sponsor' as const, icon: Heart, label: 'Sponsor' },
               { id: 'howtouse' as const, icon: HelpCircle, label: 'How to Use' },
@@ -333,31 +332,7 @@ const AboutTab: React.FC = () => (
       </div>
     </div>
 
-    {/* Tech Stack */}
-    <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-      <div className="px-5 py-4 border-b border-gray-700">
-        <h3 className="font-semibold text-lg flex items-center gap-2">
-          <Globe className="w-5 h-5 text-green-400" /> Technology Stack
-        </h3>
-      </div>
-      <div className="p-5">
-        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-          {[
-            { name: 'React', desc: 'UI Framework' },
-            { name: 'TypeScript', desc: 'Type Safety' },
-            { name: 'Tailwind CSS', desc: 'Styling' },
-            { name: 'Vite', desc: 'Build Tool' },
-            { name: 'Supabase', desc: 'Backend & Auth' },
-            { name: 'jsPDF', desc: 'PDF Generation' },
-          ].map((t, i) => (
-            <div key={i} className="bg-gray-900/50 rounded-lg p-3 text-center border border-gray-700/50">
-              <div className="font-bold text-sm">{t.name}</div>
-              <div className="text-xs text-gray-400">{t.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
+    {/* Technology Stack removed per request */}
 
     {/* Contact / Social */}
     <div className="bg-gray-800 rounded-xl border border-gray-700 p-5">
@@ -380,92 +355,22 @@ const AboutTab: React.FC = () => (
 );
 
 // ============================================================
-// SPONSOR TAB
+// SPONSOR TAB (simplified)
 // ============================================================
 const SponsorTab: React.FC = () => (
   <div className="space-y-6">
-    {/* Hero */}
-    <div className="bg-gradient-to-br from-pink-900/30 to-rose-900/30 rounded-2xl border border-pink-700/50 p-8 text-center">
-      <div className="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl">
-        <Heart className="w-10 h-10 text-white" />
-      </div>
-      <h2 className="text-2xl font-bold text-pink-300">Support Scorekeeper Pro</h2>
-      <p className="text-gray-300 mt-2 max-w-md mx-auto">
-        This app is free and open source. If you find it useful, consider supporting its development!
-      </p>
+    <div className="bg-gradient-to-br from-blue-900/10 to-indigo-900/10 rounded-2xl border border-blue-700/20 p-8 text-center">
+      <h2 className="text-2xl font-bold text-blue-300">Latur Softball Association</h2>
+      <p className="text-gray-300 mt-2 max-w-md mx-auto">Proudly supporting Scorekeeper Pro.</p>
     </div>
 
-    {/* Sponsor Tiers */}
-    <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-      <div className="px-5 py-4 border-b border-gray-700">
-        <h3 className="font-semibold text-lg flex items-center gap-2">
-          <Coffee className="w-5 h-5 text-amber-400" /> Ways to Support
-        </h3>
-      </div>
-      <div className="p-5 space-y-4">
-        {[
-          {
-            tier: '☕ Buy a Coffee',
-            amount: '$5',
-            desc: 'Help keep the developer caffeinated!',
-            color: 'amber',
-            icon: Coffee
-          },
-          {
-            tier: '⭐ Supporter',
-            amount: '$15',
-            desc: 'Get your name listed as a supporter in the app.',
-            color: 'blue',
-            icon: Star
-          },
-          {
-            tier: '🏆 Sponsor',
-            amount: '$50',
-            desc: 'Feature your logo/name in the app. Great for baseball organizations!',
-            color: 'emerald',
-            icon: Award
-          },
-        ].map((s, i) => (
-          <div key={i} className="bg-gray-900/50 rounded-xl p-5 border border-gray-700/50 flex items-start gap-4">
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${
-              s.color === 'amber' ? 'bg-amber-600/20' : s.color === 'blue' ? 'bg-blue-600/20' : 'bg-emerald-600/20'
-            }`}>
-              <s.icon className={`w-6 h-6 ${s.color === 'amber' ? 'text-amber-400' : s.color === 'blue' ? 'text-blue-400' : 'text-emerald-400'}`} />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center justify-between">
-                <h4 className="font-bold">{s.tier}</h4>
-                <span className="text-lg font-black text-white">{s.amount}</span>
-              </div>
-              <p className="text-sm text-gray-400 mt-1">{s.desc}</p>
-              <button className="mt-3 bg-pink-600 hover:bg-pink-500 text-white font-semibold px-4 py-2 rounded-lg text-sm transition">
-                Support →
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    {/* Current Sponsors */}
-    <div className="bg-gray-800 rounded-xl border border-gray-700 overflow-hidden">
-      <div className="px-5 py-4 border-b border-gray-700">
-        <h3 className="font-semibold text-lg">Our Sponsors</h3>
-      </div>
-      <div className="p-5 text-center text-gray-400 text-sm">
-        <p>No sponsors yet. Be the first! 🎉</p>
-      </div>
-    </div>
-
-    {/* Open Source */}
-    <div className="bg-gray-800/50 rounded-xl border border-gray-700 p-4">
-      <div className="flex items-start gap-3">
-        <Heart className="w-5 h-5 text-pink-400 flex-shrink-0 mt-0.5" />
-        <p className="text-sm text-gray-400">
-          Scorekeeper Pro is <strong className="text-white">free and open source</strong>.
-          Sponsorship is entirely voluntary and helps ensure continued development and improvements.
-        </p>
-      </div>
+    <div className="bg-gray-800 rounded-xl border border-gray-700 p-6">
+      <h3 className="font-semibold text-lg mb-3">Development Notice</h3>
+      <p className="text-sm text-gray-300 mb-3">We are in development phase. If you encounter any issues while using the app, please contact us.</p>
+      <p className="text-sm text-gray-300 mb-3">Contact Email: <a href="mailto:md.mohmmadd@gmail.com" className="text-blue-400 hover:underline">md.mohmmadd@gmail.com</a></p>
+      <label className="block text-sm text-gray-300 mb-2">Describe the issue (optional)</label>
+      <textarea placeholder="Describe the issue you found..." className="w-full min-h-[120px] bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none"></textarea>
+      <div className="mt-3 text-sm text-gray-400">You can copy the above text and email it to us, or use your email client.</div>
     </div>
   </div>
 );

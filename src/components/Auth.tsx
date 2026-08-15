@@ -244,7 +244,7 @@ export const Auth: React.FC<AuthProps> = ({ onLogin, currentUser, onLogout }) =>
             {/* Supabase status */}
             <div className={`mt-4 p-3 rounded-lg text-xs flex items-center gap-2 ${supabaseReady ? 'bg-green-500/10 border border-green-500/30 text-green-400' : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'}`}>
               {supabaseReady ? <Database className="w-4 h-4" /> : <AlertTriangle className="w-4 h-4" />}
-              {supabaseReady ? 'Cloud connected — data synced to Supabase' : 'Local mode — data in browser only'}
+                {supabaseReady ? 'Connected — data synced to Supabase' : 'Local mode — data in browser only'}
             </div>
 
             {/* User Details */}
@@ -263,16 +263,7 @@ export const Auth: React.FC<AuthProps> = ({ onLogin, currentUser, onLogout }) =>
                   <span className="text-sm text-slate-400">Email</span>
                   <span className="text-sm font-medium text-white">{currentUser.email}</span>
                 </div>
-                <div className="flex items-center justify-between px-4 py-3">
-                  <span className="text-sm text-slate-400">User ID</span>
-                  <span className="text-xs font-mono text-slate-500 truncate max-w-[200px]">{currentUser.id}</span>
-                </div>
-                <div className="flex items-center justify-between px-4 py-3">
-                  <span className="text-sm text-slate-400">Storage</span>
-                  <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${supabaseReady ? 'bg-green-500/20 text-green-400' : 'bg-amber-500/20 text-amber-400'}`}>
-                    {supabaseReady ? '☁️ Cloud' : '💾 Local'}
-                  </span>
-                </div>
+                
               </div>
             </div>
 
@@ -317,11 +308,7 @@ export const Auth: React.FC<AuthProps> = ({ onLogin, currentUser, onLogout }) =>
           </p>
         </div>
 
-        {/* Supabase status */}
-        <div className={`mb-4 p-2.5 rounded-lg text-xs flex items-center gap-2 ${supabaseReady ? 'bg-green-500/10 border border-green-500/30 text-green-400' : 'bg-amber-500/10 border border-amber-500/30 text-amber-400'}`}>
-          {supabaseReady ? <Database className="w-3.5 h-3.5" /> : <AlertTriangle className="w-3.5 h-3.5" />}
-          {supabaseReady ? 'Cloud storage active' : 'Local mode — configure Supabase for persistent data'}
-        </div>
+        {/* Supabase status removed from auth forms per request */}
 
         {error && <div className="bg-red-500/10 border border-red-500/40 text-red-400 text-sm p-3 rounded-lg mb-4">{error}</div>}
         {success && <div className="bg-green-500/10 border border-green-500/40 text-green-400 text-sm p-3 rounded-lg mb-4">{success}</div>}
