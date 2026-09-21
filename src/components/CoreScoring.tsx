@@ -142,10 +142,24 @@ export const CoreScoring: React.FC<CoreScoringProps> = ({ game, onUpdateGame, on
       case 'IBB':
       case 'HBP':
       case 'INT':
-        if (newRunners[3]) { runsScored++; newRunners[3] = null; }
-        if (newRunners[2]) { newRunners[3] = newRunners[2]; newRunners[2] = null; }
-        if (newRunners[1]) { newRunners[2] = newRunners[1]; newRunners[1] = null; }
+        // Only advance runners if they are forced to move
+        if (newRunners[1] && newRunners[2] && newRunners[3]) {
+          // Bases loaded: everyone forced
+          runsScored++;
+          newRunners[3] = newRunners[2];
+          newRunners[2] = newRunners[1];
+        } else if (newRunners[1] && newRunners[2] && !newRunners[3]) {
+          // 1st and 2nd occupied: both forced
+          newRunners[3] = newRunners[2];
+          newRunners[2] = newRunners[1];
+        } else if (newRunners[1] && !newRunners[2]) {
+          // 1st occupied: forced to 2nd (runner on 3rd stays if present)
+          newRunners[2] = newRunners[1];
+        }
+        
+        // Put the batter on 1st base
         newRunners[1] = currentBatter?.id || 'batter';
+        
         updateBatterStats(outcome === '1B', outcome === '1B' || outcome === 'E');
         break;
 
